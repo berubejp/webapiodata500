@@ -10,8 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddDbContext<BookDbContext>(opt => opt.UseInMemoryDatabase("BookDbContext"));
-builder.Services.AddAuthentication("BasicAuthentication").AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
-builder.Services.AddAuthorization();
+
 builder.Services.AddControllers().AddOData(o => o.EnableQueryFeatures().AddRouteComponents("odata", EdmModel.GetEdmModel()));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -22,8 +21,6 @@ app.UseHttpsRedirection();
 app.UseRouting();
 app.UseSwagger();
 app.UseSwaggerUI();
-app.UseAuthentication();
-app.UseAuthorization();
 app.MapControllers();
 
 var serviceScopeFactory = app.Services.GetRequiredService<IServiceScopeFactory>();

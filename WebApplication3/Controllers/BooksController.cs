@@ -6,7 +6,6 @@ using WebApplication3.Entites;
 
 namespace WebApplication3.Controllers
 {
-    [Authorize]
     public class BooksController : ODataController
     {
         private readonly BookDbContext _context;
